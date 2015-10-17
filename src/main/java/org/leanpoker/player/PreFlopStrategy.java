@@ -34,7 +34,7 @@ public class PreFlopStrategy implements Strategy {
         if(CardUtility.getPar(CardUtility.getRanks(holeCards))>0){
             betMultiplier+=10;
         } else {
-            if (figuras<2 && gameState.getBet() > gameState.getStack() * 0.7 ) {
+            if (figuras<2 && !CardUtility.isSzin(holeCards) && gameState.getBet() > gameState.getStack() * 0.7 ) {
                 betMultiplier = 0;
             }
         }
