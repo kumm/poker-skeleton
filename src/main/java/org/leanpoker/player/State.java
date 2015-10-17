@@ -21,6 +21,7 @@ public class State {
     private List<Player> players;
     private int bigBlindNdx;
     private int currentBuyIn;
+    private int pot;
 
     public void update(GameState gameState) {
         myNdx = gameState.getInAction();
@@ -32,6 +33,7 @@ public class State {
         dealerNdx = gameState.getDealer();
         smallBlindNdx = gameState.getSmallBlind();
         currentBuyIn = gameState.getCurrentBuyIn();
+        pot = gameState.getPot();
         bigBlindNdx = smallBlindNdx + 1;
         bigBlindNdx = bigBlindNdx >= players.size() ? 0 : bigBlindNdx;
         players = gameState.getPlayers();
@@ -67,6 +69,11 @@ public class State {
 
     public int getCurrentBuyIn() {
         return currentBuyIn;
+    }
+
+
+    public int getPot() {
+        return pot;
     }
 
     public boolean amIBigBlind() {
