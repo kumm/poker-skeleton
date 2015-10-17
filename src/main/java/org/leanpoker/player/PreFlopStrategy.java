@@ -7,6 +7,6 @@ public class PreFlopStrategy implements Strategy {
 
     @Override
     public int betRequest(State gameState) {
-        return 3*gameState.getMinimumRaise();
+        return 2*gameState.getMinimumRaise();
     }
 }
