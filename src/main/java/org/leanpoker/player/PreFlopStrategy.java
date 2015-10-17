@@ -22,7 +22,9 @@ public class PreFlopStrategy implements Strategy {
         if(CardUtility.isSzin(holeCards)){
             betMultiplier+=2;
         }
-        if(figuras == 2){
+        if (figuras == 1) {
+            betMultiplier++;
+        } else if(figuras == 2){
             betMultiplier+=2;
         }
         if(CardUtility.getPar(CardUtility.getRanks(holeCards))>0){
