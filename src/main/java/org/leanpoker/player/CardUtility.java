@@ -62,4 +62,42 @@ public class CardUtility {
         return par;
     }
 
+    public static boolean hasDrill(Map<Rank, Integer> map) {
+        for (Integer value : map.values()) {
+            if (value == 3) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean hasPoker(Map<Rank, Integer> map) {
+        for (Integer value : map.values()) {
+            if (value == 4) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean hasSzin(List<Card> allCards) {
+        Map<Suit, Integer> suit = new HashMap();
+        for (Card card : allCards) {
+            if (suit.containsKey(card.getSuit())) {
+                int sum = suit.get(card.getSuit());
+                sum++;
+                suit.put(card.getSuit(), sum);
+            } else {
+                suit.put(card.getSuit(), 1);
+            }
+        }
+
+        for (Integer value : suit.values()) {
+            if(value == 5){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

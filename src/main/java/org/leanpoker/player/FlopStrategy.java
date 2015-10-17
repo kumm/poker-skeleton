@@ -13,6 +13,12 @@ public class FlopStrategy implements Strategy {
         int call = state.getCurrentBuyIn() - state.getBet();
         Map<Rank, Integer> ranks = CardUtility.getRanks(state.getCards());
         int par = CardUtility.getPar(ranks);
+        if(CardUtility.hasPoker(ranks) || CardUtility.hasSzin(state.getCards())){
+            return Integer.MAX_VALUE;
+        }
+        if(CardUtility.hasDrill(ranks)){
+            return call + state.getMinimumRaise() * 4;
+        }
         if (par == 1) {
             return call;
         } else if (par == 2) {
