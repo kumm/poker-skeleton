@@ -35,8 +35,8 @@ public class State {
         currentBuyIn = gameState.getCurrentBuyIn();
         pot = gameState.getPot();
         bigBlindNdx = smallBlindNdx + 1;
-        bigBlindNdx = bigBlindNdx >= players.size() ? 0 : bigBlindNdx;
         players = gameState.getPlayers();
+        bigBlindNdx = bigBlindNdx >= players.size() ? 0 : bigBlindNdx;
     }
 
     public Integer getBet() {
