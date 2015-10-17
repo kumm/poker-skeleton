@@ -17,11 +17,15 @@ public class PreFlopStrategy implements Strategy {
                 figuras++;
             }
         }
-        if(figuras == 2){
-            return 4*gameState.getMinimumRaise();
-        } else if(figuras == 1){
-           return  2*gameState.getMinimumRaise();
+        int betMultiplier = 1;
+        if(CardUtility.isSzin(holeCards)){
+            betMultiplier+=2;
         }
-        return gameState.getMinimumRaise();
+        if(figuras == 2){
+            betMultiplier+=2;
+        } else if(figuras == 1){
+            betMultiplier+=1;
+        }
+        return betMultiplier * gameState.getMinimumRaise();
     }
 }
