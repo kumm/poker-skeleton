@@ -18,7 +18,7 @@ public class PreFlopStrategy implements Strategy {
                 figuras++;
             }
         }
-        int betMultiplier = 1;
+        int betMultiplier = 0;
         if(CardUtility.isSzin(holeCards)){
             betMultiplier+=2;
         }
@@ -27,6 +27,9 @@ public class PreFlopStrategy implements Strategy {
         } else if(figuras == 1){
             betMultiplier+=1;
         }
-        return betMultiplier * gameState.getMinimumRaise();
+        if(betMultiplier == 0){
+            return 0;
+        }
+        return (gameState.getCurrentBuyIn() - gameState.getBet()) + betMultiplier * gameState.getMinimumRaise();
     }
 }
