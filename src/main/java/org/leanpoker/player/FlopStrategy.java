@@ -16,6 +16,9 @@ public class FlopStrategy implements Strategy {
         if(CardUtility.hasPoker(ranks) || CardUtility.hasSzin(state.getCards())){
             return Integer.MAX_VALUE;
         }
+        if(CardUtility.hasSzin(state.getCards())){
+            return call + state.getMinimumRaise() * 10;
+        }
         if(CardUtility.hasDrill(ranks)){
             return call + state.getMinimumRaise() * 4;
         }
