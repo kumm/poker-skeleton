@@ -4,6 +4,7 @@ import com.wcs.poker.gamestate.Card;
 import com.wcs.poker.gamestate.GameState;
 import com.wcs.poker.gamestate.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
 public class State {
 
     private Integer bet;
-    private List<Card> holeCards;
+    private List<Card> cards;
     private Integer stack;
     private Integer minimumRaise;
     private int myNdx;
@@ -27,7 +28,9 @@ public class State {
         myNdx = gameState.getInAction();
         com.wcs.poker.gamestate.Player me = gameState.getPlayers().get(myNdx);
         bet = me.getBet();
-        holeCards = me.getHoleCards();
+        cards = new ArrayList<>();
+        cards.addAll(me.getHoleCards());
+        cards.addAll(gameState.getCommunityCards());
         stack = me.getStack();
         minimumRaise = gameState.getMinimumRaise();
         dealerNdx = gameState.getDealer();
@@ -39,19 +42,19 @@ public class State {
         bigBlindNdx = bigBlindNdx >= players.size() ? 0 : bigBlindNdx;
     }
 
-    public Integer getBet() {
+    public int getBet() {
         return bet;
     }
 
-    public List<Card> getHoleCards() {
-        return holeCards;
+    public List<Card> getCards() {
+        return cards;
     }
 
-    public Integer getStack() {
+    public int getStack() {
         return stack;
     }
 
-    public Integer getMinimumRaise() {
+    public int getMinimumRaise() {
         return minimumRaise;
     }
 

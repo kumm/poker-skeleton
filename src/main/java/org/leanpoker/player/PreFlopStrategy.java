@@ -11,7 +11,7 @@ public class PreFlopStrategy implements Strategy {
 
     @Override
     public int betRequest(State gameState) {
-        List<Card> holeCards = gameState.getHoleCards();
+        List<Card> holeCards = gameState.getCards();
         int figuras = 0;
         for (Card card : holeCards) {
             if(CardUtility.isFiguras(card)){
