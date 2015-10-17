@@ -11,14 +11,14 @@ public class FlopStrategy implements Strategy {
     @Override
     public int betRequest(State state) {
         int call = state.getCurrentBuyIn() - state.getBet();
-        Map<Rank, Integer> ranks = CardUtility.getRanks(state.getHoleCards());
+        Map<Rank, Integer> ranks = CardUtility.getRanks(state.getCards());
         int par = CardUtility.getPar(ranks);
         if (par == 1) {
             return call;
         } else if (par == 2) {
             return call + state.getMinimumRaise() * 3;
         }
-        if (state.getHoleCards().size() == 7) {
+        if (state.getCards().size() == 7) {
             return 0;
         }
         return call;

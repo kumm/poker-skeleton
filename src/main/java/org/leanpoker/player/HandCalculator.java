@@ -3,7 +3,7 @@ package org.leanpoker.player;
 /**
  * Created by kumm on 2015.10.17..
  */
-public class HandCalculator {
+public interface HandCalculator {
 
-    public long getHand()
+    public long getHand();
 }
