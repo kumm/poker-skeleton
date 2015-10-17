@@ -25,10 +25,14 @@ public class PreFlopStrategy implements Strategy {
         if (figuras == 1) {
             betMultiplier++;
         } else if(figuras == 2){
-            betMultiplier+=2;
+                betMultiplier+=2;
         }
         if(CardUtility.getPar(CardUtility.getRanks(holeCards))>0){
             betMultiplier+=10;
+        } else {
+            if (gameState.getBet() > gameState.getStack() / 2 ) {
+                betMultiplier = 0;
+            }
         }
         if(betMultiplier == 0){
             return 0;
