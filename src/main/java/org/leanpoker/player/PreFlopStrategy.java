@@ -23,7 +23,9 @@ public class PreFlopStrategy implements Strategy {
             betMultiplier+=2;
         }
         if (figuras == 1) {
-            betMultiplier++;
+            if (betMultiplier == 0) {
+                return 0;
+            }
         } else if(figuras == 2){
                 betMultiplier+=2;
         }
