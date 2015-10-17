@@ -2,6 +2,7 @@ package org.leanpoker.player;
 
 import com.wcs.poker.gamestate.Card;
 import com.wcs.poker.gamestate.GameState;
+import com.wcs.poker.gamestate.Player;
 
 import java.util.List;
 
@@ -14,7 +15,12 @@ public class State {
     private List<Card> holeCards;
     private Integer stack;
     private Integer minimumRaise;
-    private Integer myNdx;
+    private int myNdx;
+    private int dealerNdx;
+    private int smallBlindNdx;
+    private List<Player> players;
+    private int bigBlindNdx;
+    private int currentBuyIn;
 
     public void update(GameState gameState) {
         myNdx = gameState.getInAction();
@@ -23,6 +29,12 @@ public class State {
         holeCards = me.getHoleCards();
         stack = me.getStack();
         minimumRaise = gameState.getMinimumRaise();
+        dealerNdx = gameState.getDealer();
+        smallBlindNdx = gameState.getSmallBlind();
+        currentBuyIn = gameState.getCurrentBuyIn();
+        bigBlindNdx = smallBlindNdx + 1;
+        bigBlindNdx = bigBlindNdx >= players.size() ? 0 : bigBlindNdx;
+        players = gameState.getPlayers();
     }
 
     public Integer getBet() {
@@ -46,10 +58,18 @@ public class State {
     }
 
     public boolean amISmallBlind() {
-        return myNdx == 0;
+        return myNdx == smallBlindNdx;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public int getCurrentBuyIn() {
+        return currentBuyIn;
     }
 
     public boolean amIBigBlind() {
-        return myNdx == 1;
+        return bigBlindNdx == myNdx;
     }
 }
