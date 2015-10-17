@@ -24,10 +24,14 @@ public class FlopStrategy implements Strategy {
             return call + state.getMinimumRaise() * 4;
         }
         if (par == 1) {
+            if (state.getBet() > state.getStack() / 2) {
+                return 0;
+            }
             return call;
         } else if (par == 2) {
             return call + state.getMinimumRaise() * 3;
         }
+        // TODO átgondolni!!!
         if (state.getCards().size() == 7) {
             return 0;
         }
