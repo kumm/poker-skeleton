@@ -1,6 +1,7 @@
 package org.leanpoker.player;
 
 import com.wcs.poker.gamestate.Rank;
+
 import java.util.Map;
 
 /**
@@ -13,8 +14,8 @@ public class FlopStrategy implements Strategy {
         int call = state.getCurrentBuyIn() - state.getBet();
         Map<Rank, Integer> ranks = CardUtility.getRanks(state.getCards());
         int par = CardUtility.getPar(ranks);
-        if(CardUtility.hasPoker(ranks) || CardUtility.hasSzin(state.getCards())){
-            return Integer.MAX_VALUE;
+        if(CardUtility.hasPoker(ranks)){
+            return state.getStack();
         }
         if(CardUtility.hasSzin(state.getCards())){
             return call + state.getMinimumRaise() * 10;
